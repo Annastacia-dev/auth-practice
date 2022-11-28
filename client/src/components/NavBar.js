@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const NavBar = ({setUser}) => {
 
@@ -21,6 +22,8 @@ const NavBar = ({setUser}) => {
   return (
     <div>NavBar
         <button onClick={handleLogOut}>Log Out</button>
+        <Link to='/profile'>Edit Profile</Link>
+        <Link to='/tweets'>All Tweets</Link>
     </div>
   )
 }

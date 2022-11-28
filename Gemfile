@@ -53,6 +53,8 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem 'faker', '~> 2.18'
 
+gem 'active_model_serializers', '~> 0.10.12'
+
 
 
 

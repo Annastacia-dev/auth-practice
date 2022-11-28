@@ -2,6 +2,7 @@ import React,{ useState } from 'react'
 
 const SignUp = ({ setUser }) => {
 
+    const [email, setEmail] = useState('')
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [passwordCofirmation, setPasswordConfirmation] = useState('')
@@ -15,6 +16,7 @@ const SignUp = ({ setUser }) => {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
+                email,
                 username,
                 password,
                 password_confirmation: passwordCofirmation
@@ -36,6 +38,9 @@ const SignUp = ({ setUser }) => {
     <>
     <form onSubmit={handleSignUp}>
         <h1>Sign Up</h1>
+        <input type="email" placeholder="email" value={email} onChange={(e) => setEmail(e.target.value)}/> 
+        <br />
+        <br />
         <input type="text" placeholder="username" value={username} onChange={(e) => setUsername(e.target.value)}/>
         <br />
         <br />

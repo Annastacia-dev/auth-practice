@@ -9,14 +9,18 @@ class UsersController < ApplicationController
     end
 
     def show
+        render json: @current_user, serializer: UserTweetsSerializer
+    end
+
+    def update
+        @current_user.update!(user_params)
         render json: @current_user
     end
 
     private
 
     def user_params
-        params.permit(:username, :password, :password_confirmation, :avatar_url, :bio, :name)
+        params.permit( :email, :username, :password, :password_confirmation, :avatar_url, :bio, :name)
     end
-
 
 end
