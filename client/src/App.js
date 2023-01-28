@@ -20,7 +20,13 @@ function App() {
           } })     
 },[])
 
-if (!user) return <LogIn setUser={setUser}/>
+if (!user) return (
+    <>
+        <Routes>
+         <Route path="/" element={<LogIn setUser={setUser} />} />
+        </Routes>
+    </>
+)
 
   return (
     <>

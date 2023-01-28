@@ -9,9 +9,6 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
   get '/me', to: 'users#show'
-
-  post '/forgot_password', to: 'password_resets#create'
-  patch '/reset_password', to: 'password_resets#update'
   
   
 end

@@ -45,7 +45,8 @@ const SignUp = ({ setUser }) => {
         <br />
         <br />
         <input type="password" placeholder="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
-        <p>Password must include a number, an uppercase letter and a special character </p>
+        <br />
+        <br />
         <input type="password" placeholder="password confirmation" value={passwordCofirmation} onChange={(e) => setPasswordConfirmation(e.target.value)}/>
         {
             errors.map(error => <p key={error}>{error}</p>)

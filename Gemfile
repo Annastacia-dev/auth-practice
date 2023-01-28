@@ -55,7 +55,14 @@ gem 'faker', '~> 2.18'
 
 gem 'active_model_serializers', '~> 0.10.12'
 
-
-
-
 gem "foreman", "~> 0.87.2"
+
+gem 'dotenv-rails'
+
+gem 'rack-cors'
+
+gem 'omniauth'
+
+gem 'omniauth-google-oauth2'
+
+gem 'omniauth-rails_csrf_protection'

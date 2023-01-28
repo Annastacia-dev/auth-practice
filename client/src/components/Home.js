@@ -7,9 +7,10 @@ const Home = ( { user }) => {
         <h4>{user.name}</h4>
         <p>@{user.username}</p>
         <p>{user.bio}</p>
+        <h3>My Tweets</h3>
         {
           user.tweets ?
-          user.tweets.map(tweet => <p key={tweet.id}>{tweet.content}</p>)
+          user.tweets.map(tweet => <p key={tweet.id}>{tweet.tweet}</p>)
           :
           null
         }

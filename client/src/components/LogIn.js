@@ -28,7 +28,7 @@ const LogIn = ({ setUser }) => {
         })
         .then(r => {
             if (r.ok) {
-                r.json().then(user => setUser(user))
+                r.json().then(user => console.log(user))
             } else {
                 r.json().then(err => setErrors(err.errors))
             }
@@ -41,10 +41,24 @@ const LogIn = ({ setUser }) => {
         showLogIn ?
         <form onSubmit={handleLogIn}>
             <h1>Log In</h1>
-            <input type="text" placeholder="username or email" value={username} onChange={(e) => setUsername(e.target.value)}/>
+            <input 
+            type="text" 
+            id='username'
+            placeholder="username or email" 
+            value={username} 
+            onChange={(e) => setUsername(e.target.value)}
+            />
             <br />
             <br />
-            <input type="password" placeholder="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
+            <input 
+            type="password" 
+            id='password'
+            placeholder="password" 
+            value={password} 
+            onChange={(e) => setPassword(e.target.value)}
+            autoComplete="current-password"
+            />
+            
             
             {
                 errors.map(error => <p key={error}>{error}</p>)
