@@ -12,6 +12,23 @@ const LogIn = ({ setUser }) => {
 
     const [showLogIn, setShowLogIn] = useState(true)
 
+    const handleGoogleLogIn = (e) => {
+        e.preventDefault()
+        fetch('/auth/google_oauth2',{
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(r => r.json())
+        .then(data => {
+            console.log(data)
+    })
+    }
+
+
+
+
 
 
     const handleLogIn = (e) => {
@@ -39,6 +56,7 @@ const LogIn = ({ setUser }) => {
     <>
     {
         showLogIn ?
+        <>
         <form onSubmit={handleLogIn}>
             <h1>Log In</h1>
             <input 
@@ -47,6 +65,7 @@ const LogIn = ({ setUser }) => {
             placeholder="username or email" 
             value={username} 
             onChange={(e) => setUsername(e.target.value)}
+            autoComplete="username"
             />
             <br />
             <br />
@@ -72,6 +91,12 @@ const LogIn = ({ setUser }) => {
             </p>
             
         </form>
+            <button
+            onClick={handleGoogleLogIn}
+            >
+                <img src="https://developers.google.com/identity/images/btn_google_signin_dark_normal_web.png" alt="login in with google" />
+            </button>
+        </>
         :
         <>
         <SignUp setUser={setUser}/>
