@@ -3,9 +3,9 @@ import React from 'react'
 const Home = ( { user }) => {
   return (
     <div>
-      <img className='avatar' src={user.avatar_url} alt="" />
+      <img className='avatar' src={user.avatar_url || user.picture} alt="" />
         <h4>{user.name}</h4>
-        <p>@{user.username}</p>
+        <p>@{user.username || user.given_name}</p>
         <p>{user.bio}</p>
         <h3>My Tweets</h3>
         {

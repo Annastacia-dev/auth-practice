@@ -13,6 +13,10 @@ const NavBar = ({setUser}) => {
                 setUser(null)
             }
         })
+        // clear token from localStorage
+        setUser(null)
+        // redirect to home page
+        window.location.href = '/'
     }
 
 

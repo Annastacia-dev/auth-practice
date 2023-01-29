@@ -13,7 +13,12 @@ function App() {
 
   useEffect(()=> {
       // auto login
-      fetch('/me')
+      fetch('/me',{
+          headers: {
+            method: 'GET',
+            Authorization: `Bearer ${localStorage.token}`
+          }
+      })
       .then(r => {
           if (r.ok) {
               r.json().then(user => setUser(user))

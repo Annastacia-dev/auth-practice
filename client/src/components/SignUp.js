@@ -5,7 +5,7 @@ const SignUp = ({ setUser }) => {
     const [email, setEmail] = useState('')
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
-    const [passwordCofirmation, setPasswordConfirmation] = useState('')
+    const [passwordConfirmation, setPasswordConfirmation] = useState('')
     const [errors, setErrors] = useState([])
 
     const handleSignUp = (e) => {
@@ -19,7 +19,7 @@ const SignUp = ({ setUser }) => {
                 email,
                 username,
                 password,
-                password_confirmation: passwordCofirmation
+                password_confirmation: passwordConfirmation
             })
         })
         .then(r => {
@@ -47,7 +47,7 @@ const SignUp = ({ setUser }) => {
         <input type="password" placeholder="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
         <br />
         <br />
-        <input type="password" placeholder="password confirmation" value={passwordCofirmation} onChange={(e) => setPasswordConfirmation(e.target.value)}/>
+        <input type="password" placeholder="password confirmation" value={passwordConfirmation} onChange={(e) => setPasswordConfirmation(e.target.value)}/>
         {
             errors.map(error => <p key={error}>{error}</p>)
         }

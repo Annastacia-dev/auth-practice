@@ -1,34 +1,60 @@
-import React, { useState} from 'react'
+import React, { useState, useEffect } from 'react'
 import SignUp from './SignUp'
+import jwt_decode from 'jwt-decode'
 
 
 
 
 const LogIn = ({ setUser }) => {
 
+    function handleCallbackResponse(response) {
+        console.log(response.credential)
+        if (response.credential) {
+            var id_token = response.credential;
+            var user = jwt_decode(id_token)
+            // assign session id to user
+            user.id = user.sub
+            setUser(user)
+            
+
+        } else {
+            alert('No credential')
+        }
+    }
+
+
+    useEffect(() => {
+        // global google
+
+        // eslint-disable-next-line no-undef
+        google.accounts.id.initialize({
+            client_id: "201862110852-a0eppovpnglc56jq5lp7pf00947opb4i.apps.googleusercontent.com",
+            callback: handleCallbackResponse
+        })
+
+        // eslint-disable-next-line no-undef
+        google.accounts.id.renderButton(
+            document.getElementById('signInDiv'),
+            {
+                theme: 'outline',
+                size: 'large',
+            }
+        )
+
+
+
+    }, [])
+
+
+
+
+
+
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [errors, setErrors] = useState([])
 
     const [showLogIn, setShowLogIn] = useState(true)
-
-    const handleGoogleLogIn = (e) => {
-        e.preventDefault()
-        fetch('/auth/google_oauth2',{
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        })
-        .then(r => r.json())
-        .then(data => {
-            console.log(data)
-    })
-    }
-
-
-
-
 
 
     const handleLogIn = (e) => {
@@ -45,7 +71,7 @@ const LogIn = ({ setUser }) => {
         })
         .then(r => {
             if (r.ok) {
-                r.json().then(user => console.log(user))
+                r.json().then(user => setUser(user))
             } else {
                 r.json().then(err => setErrors(err.errors))
             }
@@ -91,11 +117,8 @@ const LogIn = ({ setUser }) => {
             </p>
             
         </form>
-            <button
-            onClick={handleGoogleLogIn}
-            >
-                <img src="https://developers.google.com/identity/images/btn_google_signin_dark_normal_web.png" alt="login in with google" />
-            </button>
+            <div id="signInDiv">
+            </div>
         </>
         :
         <>

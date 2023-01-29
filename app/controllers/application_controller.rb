@@ -11,7 +11,11 @@ class ApplicationController < ActionController::API
     private
 
     def authorize 
-        @current_user = User.find(session[:user_id])
+        # @current_user = User.find(session[:user_id])
+        # current user can be a user logged in with google
+        # or a user logged in with a username and password
+        # so we need to check both
+        @current_user = User.find_by(id: session[:user_id]) || User.find_by(id: cookies.signed[:user_id])
         render json: { errors: ['unauthorized'] }, status: :unauthorized unless @current_user 
     end
 
